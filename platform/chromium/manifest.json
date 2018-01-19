@@ -32,6 +32,9 @@
     "options_ui": {
         "page": "options_ui.html"
     },
-    "permissions": [],
+    "permissions": [
+        "activeTab",
+        "storage"
+    ],
     "short_name": "Thingo",
 }
