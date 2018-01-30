@@ -9,12 +9,14 @@ const template = {
                 {
                     "title": "Title",
                     "path": ".title",
-                    "content": "string"
+                    "content": "string",
+                    "unique": true
                 },
                 {
                     "title": "Description",
-                    "path": ".template-info",
-                    "content": "string"
+                    "path": ".template-resume",
+                    "content": "string",
+                    "unique": true
                 }
             ]
         }
@@ -22,28 +24,28 @@ const template = {
 };
 
 function parseElement($element, template) {
-    const data = {
-        title: template.title,
-    };
-
-    switch (typeof template.content) {
-        case 'object':
-            if(!Array.isArray(template.content)) return;
-            let ma_liste = [];
-            $element.find(template.path).each((index, element) => {
-                ma_liste.push(parseElement(,))
-            });
-            data.content = template.content.map((child) => parseElement(, child));
-            break;
-        case 'string':
-            data.content = $element.find(template.path).text();
-            break;
-
+    function extract(child) {
+        const entity = { title: template.title };
+        switch (typeof template.content) {
+            case 'object':
+                if(!Array.isArray(template.content)) return null;
+                entity.content = template.content.map(subElement => parseElement($(child), subElement));
+                break;
+            case 'string':
+                entity.content = $(child).text();
+                break;
+        }
+        return entity;
     }
 
-    return data;
+    const children = $element.find(template.path);
+    if(template.unique) {
+        return extract(children.get(0));
+    } else {
+        return children.map((index, child) => extract(child)).toArray();
+    }
 }
 
-setTimeout(() => {
+$(function() {
     console.log(parseElement($('html'), template));
-}, 3000);
+});
