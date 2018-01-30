@@ -1,0 +1,85 @@
+{
+    "title": "search-results",
+    "path": "html > body > #search-results",
+    "content": [
+        {
+            "title": "result",
+            "path": ".result",
+            "content": [
+                {
+                    "title": "title",
+                    "path": ".result-title",
+                    "content": "string"
+                },
+                {
+                    "title": "url",
+                    "path": ".result-url",
+                    "content": "string"
+                },
+                {
+                    "title": "description",
+                    "path": ".result-description",
+                    "content": "string"
+                },
+                {
+                    "title": "visited",
+                    "path": ".result-visited",
+                    "content": "integer"
+                },
+                {
+                    "title": "is-mobile-friendly",
+                    ""
+                    "content": "boolean"
+                }
+            ]
+        }
+    ]
+}
+
+{
+    "title": "search-results",
+    "content": [
+        {
+            "title": "result",
+            "content": [
+                {
+                    "title": "title",
+                    "content": "FIL Lille 1"
+                },
+                {
+                    "title": "url",
+                    "content": "fil.univ-lille1.fr"
+                },
+                {
+                    "title": "description",
+                    "content": "..."
+                },
+                {
+                    "title": "visited",
+                    "content": 14
+                }
+            ]
+        },
+        {
+            "title": "result",
+            "content": [
+                {
+                    "title": "title",
+                    "content": "Portail Lille 1"
+                },
+                {
+                    "title": "url",
+                    "content": "portail.univ-lille1.fr"
+                },
+                {
+                    "title": "description",
+                    "content": "..."
+                },
+                {
+                    "title": "visited",
+                    "content": 5
+                }
+            ]
+        }
+    ]
+}

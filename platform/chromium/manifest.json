@@ -4,7 +4,6 @@
     "name": "Thingo",
     "version": "0.0.1",
 
-    "default_locale": "en",
     "description": "Extract data from any web pages",
     "icons": {
         "16": "img/icon16.png",
@@ -20,21 +19,21 @@
         "default_title": "Thingo",
         "default_popup": "popup.html"
     },
+    "content_scripts": [
+        {
+            "matches": ["http://*/*", "https://*/*"],
+            "js": ["/lib/jquery.min.js", "/js/extractor.js"],
+            "run_at": "document_idle"
+        }
+    ],
 
     "author": "Romain Grossemy, Benjamin Lopez",
-    "background": {
-        "page": "background.html"
-    },
     "incognito": "split",
     "minimum_chrome_version": "45.0",
-    "optional_permissions": [ "file:///*" ],
-    "options_page": "dashboard.html",
-    "options_ui": {
-        "page": "options_ui.html"
-    },
     "permissions": [
         "activeTab",
-        "storage"
+        "storage",
+        "notifications"
     ],
-    "short_name": "Thingo",
+    "short_name": "Thingo"
 }
