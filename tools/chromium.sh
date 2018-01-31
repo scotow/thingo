@@ -9,6 +9,7 @@ cp -R src/css               $DES/
 cp -R src/js                $DES/
 cp -R src/lib               $DES/
 cp src/*.html               $DES/
+cp -R assets                $DES/
 # cp platform/chromium/*.js   $DES/js/
 cp -R platform/chromium/img $DES/
 # cp platform/chromium/*.html $DES/

@@ -1,0 +1,12 @@
+#parse {
+    margin: 16px 20px;
+    padding: 8px 10px;
+    color: white;
+    background-color: #15b154;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+}

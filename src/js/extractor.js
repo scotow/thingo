@@ -10,17 +10,20 @@ const template = {
                     "title": "Title",
                     "path": ".title",
                     "content": "string",
-                    "unique": true
+                    "unique": true,
+                    "trim": true
                 },
                 {
                     "title": "Description",
                     "path": ".template-resume",
                     "content": "string",
-                    "unique": true
+                    "unique": true,
+                    "trim": true
                 }
             ]
         }
-    ]
+    ],
+    "unique": true
 };
 
 function parseElement($element, template) {
@@ -32,9 +35,9 @@ function parseElement($element, template) {
                 entity.content = template.content.map(subElement => parseElement($(child), subElement));
                 break;
             case 'string':
-                entity.content = $(child).text();
+                entity.content = template.trim ? $(child).text().trim() : $(child).text();
                 break;
-            case: 'number':
+            case 'number':
                 entity.content = Number($(child).text());
                 break;
         }
@@ -49,6 +52,6 @@ function parseElement($element, template) {
     }
 }
 
-$(function() {
-    console.log(parseElement($('html'), template));
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    sendResponse(parseElement($('html'), template));
 });

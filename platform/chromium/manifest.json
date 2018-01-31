@@ -33,7 +33,8 @@
     "permissions": [
         "activeTab",
         "storage",
-        "notifications"
+        "notifications",
+        "downloads"
     ],
     "short_name": "Thingo"
 }
