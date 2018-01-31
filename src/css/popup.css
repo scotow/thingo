@@ -1,4 +1,5 @@
-#parse {
+button {
+    display: block;
     margin: 16px 20px;
     padding: 8px 10px;
     color: white;

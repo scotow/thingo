@@ -53,5 +53,14 @@ function parseElement($element, template) {
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    sendResponse(parseElement($('html'), template));
+    if(!request.action) return;
+
+    switch(request.action) {
+        case 'extract':
+            sendResponse(parseElement($('html'), template));
+            break;
+        case 'next':
+            $('button.suivant').eq(0).click();
+            break;
+    }
 });

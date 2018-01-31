@@ -29,7 +29,18 @@ async function extractData() {
 
     let [tab] = await browser.tabs.query(options);
 
-    return await browser.tabs.sendMessage(tab.id, { extract: true });
+    return await browser.tabs.sendMessage(tab.id, { action: 'extract' });
+}
+
+async function nextPage() {
+    const options = {
+        active: true,
+        currentWindow: true
+    };
+
+    let [tab] = await browser.tabs.query(options);
+
+    return await browser.tabs.sendMessage(tab.id, { action: 'next' });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -44,6 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
             })
         })
         .catch(error => console.error(error));
+    });
+
+    document.getElementById('next').addEventListener('click', () => {
+        nextPage().catch(error => console.error(error));
     });
 
     document.getElementById('list').addEventListener('click', () => {
