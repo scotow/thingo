@@ -34,6 +34,9 @@ function parseElement($element, template) {
             case 'string':
                 entity.content = $(child).text();
                 break;
+            case: 'number':
+                entity.content = Number($(child).text());
+                break;
         }
         return entity;
     }
