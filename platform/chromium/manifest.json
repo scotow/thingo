@@ -28,7 +28,6 @@
     ],
 
     "author": "Romain Grossemy, Benjamin Lopez",
-    "incognito": "split",
     "minimum_chrome_version": "45.0",
     "permissions": [
         "activeTab",
