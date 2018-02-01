@@ -1,31 +1,3 @@
-const template = {
-    "title": "Books",
-    "path": "body #resultats > .notice",
-    "content": [
-        {
-            "title": "Book",
-            "path": ".search-item .notice_container .notice_corps .media-body",
-            "content": [
-                {
-                    "title": "Title",
-                    "path": ".title",
-                    "content": "string",
-                    "unique": true,
-                    "trim": true
-                },
-                {
-                    "title": "Description",
-                    "path": ".template-resume",
-                    "content": "string",
-                    "unique": true,
-                    "trim": true
-                }
-            ]
-        }
-    ],
-    "unique": true
-};
-
 function parseElement($element, template) {
     function extract(child) {
         const entity = { title: template.title };
@@ -57,7 +29,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
     switch(request.action) {
         case 'extract':
-            sendResponse(parseElement($('html'), template));
+            console.log(request.template);
+            sendResponse(parseElement($('html'), request.template));
             break;
         case 'next':
             $('button.suivant').eq(0).click();
