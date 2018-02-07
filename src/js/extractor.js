@@ -29,7 +29,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
     switch(request.action) {
         case 'extract':
-            console.log(request.template);
             sendResponse(parseElement($('html'), request.template));
             break;
         case 'next':

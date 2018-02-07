@@ -63,6 +63,7 @@ async function loadTemplate() {
 async function donwloadData(data) {
     const blob = new Blob([JSON.stringify(data, null, '\t')], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
+
     await browser.downloads.download({
         url: url,
         filename: 'data.json'

@@ -4,7 +4,7 @@
     "content": [
         {
             "title": "Episode",
-            "path": ".programme-item .media",
+            "path": ".programme-item .media.box-link",
             "content": [
                 {
                     "title": "Title",
@@ -30,8 +30,8 @@
                 {
                     "title": "Available episodes",
                     "path": ".programme-item-episode-count",
-                    "content": "number",
-                    "unique": true,
+                    "content": "string",
+                    "unique": true
                 }
             ]
         }
