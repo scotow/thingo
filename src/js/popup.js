@@ -17,19 +17,22 @@ async function currentTab() {
     return tabs[0];
 }
 
-async function extractData(template) {
+async function extractData(tree) {
     const tab = await currentTab();
 
     return await browser.tabs.sendMessage(tab.id, {
         action: 'extract',
-        template: template
+        tree: tree
     });
 }
 
-async function nextPage() {
+async function nextPage(data) {
     const tab = await currentTab();
 
-    return await browser.tabs.sendMessage(tab.id, { action: 'next' });
+    return await browser.tabs.sendMessage(tab.id, {
+        action: 'next',
+        next: data
+    });
 }
 
 function fetchTemplate(domain) {
@@ -70,21 +73,53 @@ async function donwloadData(data) {
     });
 }
 
+function wait(delay) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve();
+        }, delay);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('parse').addEventListener('click', () => {
+        let data;
+
         loadTemplate()
-        .then(template => extractData(template))
+        .then(template => {
+            function extractPage() {
+                return nextPage(template.next)
+                .then(() => wait(1000))
+                .then(() => extractData(template.tree))
+                .then(data => console.log(data))
+                .catch(error => console.error(error));
+            }
+
+            chrome.webRequest.onCompleted.addListener(details => {
+                    extractPage();
+                }, {
+                    urls: ["http://www.bm-lille.fr/Default/Portal/Recherche/Search.svc/Search*"]
+                }
+            );
+
+            wait(1000)
+            .then(() => extractData())
+            extractPage();
+            return 'hello';
+        })
         .then(data => donwloadData(data))
         .catch(error => {
             console.error(error);
         });
     });
 
-    document.getElementById('next').addEventListener('click', () => {
-        nextPage().catch(error => console.error(error));
-    });
+    // document.getElementById('next').addEventListener('click', () => {
+    //     loadTemplate()
+    //     .then(template => nextPage(template))
+    //     .catch(error => console.error(error));
+    // });
 
-    document.getElementById('load').addEventListener('click', () => {
-        loadTemplate();
-    });
+    // document.getElementById('load').addEventListener('click', () => {
+    //     loadTemplate();
+    // });
 });

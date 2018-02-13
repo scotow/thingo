@@ -33,7 +33,8 @@
         "activeTab",
         "storage",
         "notifications",
-        "downloads"
+        "downloads",
+        "webRequest"
     ],
     "short_name": "Thingo"
 }

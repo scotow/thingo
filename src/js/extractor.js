@@ -24,15 +24,33 @@ function parseElement($element, template) {
     }
 }
 
+function nextPage(next) {
+    $(next.path).click();
+}
+
+function extractDisplayedData(template) {
+    console.log(parseElement($('html'), template));
+}
+
+// function extractData(template) {
+    // $(document).ajaxComplete((event, xhr, settings) => {
+    //     if(settings.url === template.next.request) {
+    //         extractDisplayedData(template.tree);
+    //         nextPage(template.next);
+    //     }
+    // });
+// }
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if(!request.action) return;
 
     switch(request.action) {
         case 'extract':
-            sendResponse(parseElement($('html'), request.template));
+            sendResponse(parseElement($('html'), request.tree));
             break;
         case 'next':
-            $('button.suivant').eq(0).click();
+            $(request.next.path).eq(0).click();
+            sendResponse(null);
             break;
     }
 });
