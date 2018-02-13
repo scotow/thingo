@@ -66,7 +66,8 @@ async function donwloadData(data) {
 
     await browser.downloads.download({
         url: url,
-        filename: 'data.json'
+        filename: 'data.json',
+        saveAs: false
     });
 }
 
