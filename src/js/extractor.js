@@ -49,8 +49,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             sendResponse(parseElement($('html'), request.tree));
             break;
         case 'next':
-            $(request.next.path).eq(0).click();
-            sendResponse(null);
+            const $nextButton = $(request.next.path).eq(0);
+            if($nextButton.length) {
+                $nextButton.click();
+                sendResponse(true);
+            } else {
+                sendResponse(false);
+            }
             break;
     }
 });

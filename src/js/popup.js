@@ -75,38 +75,32 @@ async function donwloadData(data) {
 }
 
 function wait(delay) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve();
-        }, delay);
+    return new Promise(resolve => {
+        setTimeout(resolve, delay);
     });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('parse').addEventListener('click', () => {
-        let data;
+        let data = [];
 
         loadTemplate()
         .then(template => {
-            function extractPage() {
-                return nextPage(template.next)
-                .then(() => wait(1000))
-                .then(() => extractData(template.tree))
-                .then(data => console.log(data))
-                .catch(error => console.error(error));
-            }
-
-            chrome.webRequest.onCompleted.addListener(details => {
-                    extractPage();
-                }, {
-                    urls: ["http://www.bm-lille.fr/Default/Portal/Recherche/Search.svc/Search*"]
+            return new Promise((resolve, reject) => {
+                function extractPage() {
+                    wait(1000)
+                    .then(() => extractData(template.tree))
+                    .then(chunk => data.push(chunk))
+                    .then(() => nextPage(template.next))
+                    .then(success => {
+                        if(!success) resolve(data);
+                    })
+                    .catch(error => reject(error));
                 }
-            );
 
-            wait(1000)
-            .then(() => extractData())
-            extractPage();
-            return 'hello';
+                chrome.webRequest.onCompleted.addListener(extractPage, { urls: ["http://www.bm-lille.fr/Default/Portal/Recherche/Search.svc/Search*"] });
+                extractPage();
+            });
         })
         .then(data => donwloadData(data))
         .catch(error => {
@@ -114,11 +108,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // document.getElementById('next').addEventListener('click', () => {
-    //     loadTemplate()
-    //     .then(template => nextPage(template))
-    //     .catch(error => console.error(error));
-    // });
+    document.getElementById('single').addEventListener('click', () => {
+        loadTemplate()
+        .then(template => extractData(template.tree))
+        .then(data => donwloadData(data))
+        .catch(error => console.error(error));
+    });
 
     // document.getElementById('load').addEventListener('click', () => {
     //     loadTemplate();
