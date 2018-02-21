@@ -19,6 +19,9 @@
         "default_title": "Thingo",
         "default_popup": "popup.html"
     },
+    "background": {
+        "page": "background.html"
+    },
     "content_scripts": [
         {
             "matches": ["http://*/*", "https://*/*"],

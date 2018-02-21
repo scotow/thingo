@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => console.error(error));
     });
 
-    // document.getElementById('load').addEventListener('click', () => {
-    //     loadTemplate();
-    // });
+    document.getElementById('load').addEventListener('click', () => {
+        console.log(chrome.extension.getBackgroundPage().testbg());
+    });
 });
