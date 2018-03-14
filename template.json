@@ -1,85 +1,40 @@
 {
-    "title": "search-results",
-    "path": "html > body > #search-results",
+    "title": "Books",
+    "path": "body #resultats > .notice",
     "content": [
         {
-            "title": "result",
-            "path": ".result",
+            "title": "Book",
+            "path": ".search-item .notice_container .notice_corps .media-body",
             "content": [
                 {
-                    "title": "title",
-                    "path": ".result-title",
-                    "content": "string"
+                    "title": "Title",
+                    "path": ".title",
+                    "content": "string",
+                    "unique": true,
+                    "trim": true
                 },
                 {
-                    "title": "url",
-                    "path": ".result-url",
-                    "content": "string"
-                },
-                {
-                    "title": "description",
-                    "path": ".result-description",
-                    "content": "string"
-                },
-                {
-                    "title": "visited",
-                    "path": ".result-visited",
-                    "content": "integer"
-                },
-                {
-                    "title": "is-mobile-friendly",
-                    ""
-                    "content": "boolean"
+                    "title": "Description",
+                    "path": ".template-resume",
+                    "content": "string",
+                    "unique": true,
+                    "trim": true
                 }
             ]
         }
-    ]
+    ],
+    "unique": true
 }
 
 {
-    "title": "search-results",
-    "content": [
+    "books": [
         {
-            "title": "result",
-            "content": [
-                {
-                    "title": "title",
-                    "content": "FIL Lille 1"
-                },
-                {
-                    "title": "url",
-                    "content": "fil.univ-lille1.fr"
-                },
-                {
-                    "title": "description",
-                    "content": "..."
-                },
-                {
-                    "title": "visited",
-                    "content": 14
-                }
-            ]
+            "title": "Livre 1",
+            "description": "Description 1"
         },
         {
-            "title": "result",
-            "content": [
-                {
-                    "title": "title",
-                    "content": "Portail Lille 1"
-                },
-                {
-                    "title": "url",
-                    "content": "portail.univ-lille1.fr"
-                },
-                {
-                    "title": "description",
-                    "content": "..."
-                },
-                {
-                    "title": "visited",
-                    "content": 5
-                }
-            ]
+            "title": "Livre 2",
+            "description": "Description 2"
         }
     ]
 }
