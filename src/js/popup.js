@@ -30,8 +30,8 @@ function fetchTemplate(domain) {
     });
 }
 
-async function loadTemplate() {
-    const { url } = await currentTab();
+async function loadTemplate(url) {
+    // const { url } = await currentTab();
 
     const matches = url.match(/^((?:\w+:\/\/)?(?:w{3}\.)?([^\/:?#]+))(?:[\/:?#]|$)/i);
     const path = matches && matches[1];
@@ -48,14 +48,24 @@ async function loadTemplate() {
 
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('parse').addEventListener('click', () => {
-        loadTemplate()
-        .then(template => chrome.extension.getBackgroundPage().allPages(template))
+        let tab;
+        currentTab()
+        .then(currentTab => {
+            tab = currentTab;
+            return loadTemplate(tab.url);
+        })
+        .then(template => chrome.extension.getBackgroundPage().allPages(template, tab.id))
         .catch(error => console.error(error));
     });
 
     document.getElementById('single').addEventListener('click', () => {
-        loadTemplate()
-        .then(template => chrome.extension.getBackgroundPage().singlePage(template))
+        let tab;
+        currentTab()
+        .then(currentTab => {
+            tab = currentTab;
+            return loadTemplate(tab.url);
+        })
+        .then(template => chrome.extension.getBackgroundPage().singlePage(template, tab.id))
         .catch(error => console.error(error));
     });
 
