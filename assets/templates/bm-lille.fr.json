@@ -29,6 +29,6 @@
     "next": {
         "element": "Books",
         "path": "#resultats_recherche button[accesskey=N]",
-        "request": "http://www.bm-lille.fr/Default/Portal/Recherche/Search.svc/Search"
+        "request": "/Default/Portal/Recherche/Search.svc/Search"
     }
 }

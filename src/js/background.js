@@ -74,7 +74,7 @@ function allPages(template) {
             });
         }
 
-        chrome.webRequest.onCompleted.addListener(extractPage, { urls: [template.next.request + '*'] });
+        chrome.webRequest.onCompleted.addListener(extractPage, { urls: [template.url + template.next.request + '*'] });
         extractPage();
     })
     .then(data => {

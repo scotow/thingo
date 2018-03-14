@@ -33,12 +33,17 @@ function fetchTemplate(domain) {
 async function loadTemplate() {
     const { url } = await currentTab();
 
-    const matches = url.match(/^(?:\w+:\/\/)?(?:w{3}\.)?([^\/:?#]+)(?:[\/:?#]|$)/i);
-    const domain = matches && matches[1];
+    const matches = url.match(/^((?:\w+:\/\/)?(?:w{3}\.)?([^\/:?#]+))(?:[\/:?#]|$)/i);
+    const path = matches && matches[1];
+    const domain = matches && matches[2];
 
     if(!domain) throw new Error('Invliad domain name.');
 
-    return JSON.parse(await fetchTemplate(domain));
+    const template = JSON.parse(await fetchTemplate(domain));
+    template.url = path;
+    template.domain = domain;
+
+    return template;
 }
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -1,7 +1,35 @@
+function parseElement2($element, template) {
+    function extract(child) {
+        const entity = { title: template.title };
+        switch(typeof template.content) {
+            case 'object':
+                if(!Array.isArray(template.content)) return null;
+                entity.content = template.content.map(subElement => parseElement($(child), subElement));
+                break;
+            case 'string':
+                entity.content = template.trim ? $(child).text().trim() : $(child).text();
+                break;
+            case 'number':
+                entity.content = Number($(child).text());
+                break;
+        }
+        return entity;
+    }
+
+    const children = $element.find(template.path);
+    if(template.unique) {
+        const data = {};
+        data[template.title] = extract(children.get(0));
+        return data;
+    } else {
+        return children.map((index, child) => extract(child)).toArray();
+    }
+}
+
 function parseElement($element, template) {
     function extract(child) {
         const entity = { title: template.title };
-        switch (typeof template.content) {
+        switch(typeof template.content) {
             case 'object':
                 if(!Array.isArray(template.content)) return null;
                 entity.content = template.content.map(subElement => parseElement($(child), subElement));

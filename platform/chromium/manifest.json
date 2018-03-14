@@ -38,7 +38,8 @@
         "storage",
         "notifications",
         "downloads",
-        "webRequest"
+        "webRequest",
+        "*://*/"
     ],
     "short_name": "Thingo"
 }
