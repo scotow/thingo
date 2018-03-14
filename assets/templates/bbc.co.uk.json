@@ -1,40 +1,47 @@
 {
-    "title": "Episodes",
-    "path": "body #results",
-    "content": [
-        {
-            "title": "Episode",
-            "path": ".programme-item .media.box-link",
-            "content": [
-                {
-                    "title": "Title",
-                    "path": ".programme-item-title",
-                    "content": "string",
-                    "unique": true,
-                    "trim": true
-                },
-                {
-                    "title": "Subtitle",
-                    "path": ".programme-item-subtitle",
-                    "content": "string",
-                    "unique": true,
-                    "trim": true
-                },
-                {
-                    "title": "Synopsis",
-                    "path": ".programme-item-synopsis",
-                    "content": "string",
-                    "unique": true,
-                    "trim": true
-                },
-                {
-                    "title": "Available episodes",
-                    "path": ".programme-item-episode-count",
-                    "content": "string",
-                    "unique": true
-                }
-            ]
-        }
-    ],
-    "unique": true
+    "tree": {
+        "title": "Episodes",
+        "path": "body #results",
+        "content": [
+            {
+                "title": "Episode",
+                "path": ".programme-item .media.box-link",
+                "content": [
+                    {
+                        "title": "Title",
+                        "path": ".programme-item-title",
+                        "content": "string",
+                        "unique": true,
+                        "trim": true
+                    },
+                    {
+                        "title": "Subtitle",
+                        "path": ".programme-item-subtitle",
+                        "content": "string",
+                        "unique": true,
+                        "trim": true
+                    },
+                    {
+                        "title": "Synopsis",
+                        "path": ".programme-item-synopsis",
+                        "content": "string",
+                        "unique": true,
+                        "trim": true
+                    },
+                    {
+                        "title": "Available episodes",
+                        "path": ".programme-item-episode-count",
+                        "content": "string",
+                        "unique": true
+                    }
+                ]
+            }
+        ],
+        "unique": true
+    },
+    "next": {
+        "element": "Episodes",
+        "path": ".pgn__page--next > a",
+        "request": "/radio/categories/comedy"
+    }
 }
