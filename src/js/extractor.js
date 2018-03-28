@@ -1,16 +1,16 @@
 function parseElement2($element, template) {
     function extract(child) {
-        const entity = { title: template.title };
+        const entity = {};
         switch(typeof template.content) {
             case 'object':
                 if(!Array.isArray(template.content)) return null;
-                entity.content = template.content.map(subElement => parseElement($(child), subElement));
+                entity[template.title] = template.content.map(subElement => parseElement2($(child), subElement));
                 break;
             case 'string':
-                entity.content = template.trim ? $(child).text().trim() : $(child).text();
+                entity[template.title] = template.trim ? $(child).text().trim() : $(child).text();
                 break;
             case 'number':
-                entity.content = Number($(child).text());
+                entity[template.title] = Number($(child).text());
                 break;
         }
         return entity;
@@ -22,7 +22,9 @@ function parseElement2($element, template) {
         data[template.title] = extract(children.get(0));
         return data;
     } else {
-        return children.map((index, child) => extract(child)).toArray();
+        const data = {};
+        data[template.title] = children.map((index, child) => extract(child)).toArray();
+        return data;
     }
 }
 
@@ -74,7 +76,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
     switch(request.action) {
         case 'extract':
-            sendResponse(parseElement($('html'), request.tree));
+            sendResponse(parseElement2($('html'), request.tree));
             break;
         case 'next':
             const $nextButton = $(request.next.path).eq(0);
