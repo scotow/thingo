@@ -18,12 +18,9 @@ function parseElement2($element, template) {
 
     const children = $element.find(template.path);
     if(template.unique) {
-        const data = {};
-        return data;
+        return extract(children.get(0));
     } else {
-        const data = {};
-        data[template.title] = children.map((index, child) => extract(child)).toArray();
-        return data;
+        return children.map((index, child) => extract(child)).toArray();
     }
 }
 
