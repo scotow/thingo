@@ -13,7 +13,7 @@ async function currentTab() {
     return tabs[0];
 }
 
-function fetchTemplate(domain) {
+function fetchTemplateFromAssets(domain) {
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
         xhr.onreadystatechange = data => {
@@ -28,6 +28,10 @@ function fetchTemplate(domain) {
         xhr.open('GET', `/assets/templates/${domain}.json`, true);
         xhr.send();
     });
+}
+
+async function fetchTemplate(domain) {
+    return (await browser.storage.sync.get(domain))[domain] || null;
 }
 
 async function loadTemplate(url) {

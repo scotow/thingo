@@ -23,6 +23,9 @@
         "persistent": true,
         "page": "background.html"
     },
+
+    "options_page": "options.html",
+
     "content_scripts": [
         {
             "matches": ["http://*/*", "https://*/*"],

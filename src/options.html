@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Thingo Options</title>
+        <link rel="stylesheet" href="css/options.css">
+        <script src="lib/browser-polyfill.min.js" charset="utf-8"></script>
+        <script src="lib/jquery.min.js" charset="utf-8"></script>
+        <script src="js/options.js" charset="utf-8"></script>
+    </head>
+    <body>
+        <div class="main">
+            <div class="half">
+                <div class="title main-title">
+                    Options
+                </div>
+
+                <div class="">
+                    <h2></h2>
+                    <select id="templates-name" class="" name="">
+                        <option value=""></option>
+                    </select>
+                </div>
+
+                <div class="">
+                    <h2>Create template</h2>
+                    <input id="template-name" type="text" name="" value="" placeholder="Template name">
+                    <div id="create" class="">
+                        Create
+                    </div>
+                </div>
+            </div>
+            <div class="half edit">
+                <textarea id="template-data" name="name" rows="20" cols="80" disabled></textarea>
+                <div class="actions">
+                    <div class="action" id="save">
+                        Save
+                    </div>
+                    <div class="action" id="delete">
+                        Delete
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
