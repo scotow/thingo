@@ -9,28 +9,32 @@
     </head>
     <body>
         <div class="main">
-            <div class="half">
+            <div class="half select">
                 <div class="title main-title">
                     Options
                 </div>
-
-                <div class="">
-                    <h2></h2>
-                    <select id="templates-name" class="" name="">
+                <div class="choose">
+                    <div class="title">
+                        Edit template
+                    </div>
+                    <select id="templates-name" class="select">
                         <option value=""></option>
                     </select>
                 </div>
-
-                <div class="">
-                    <h2>Create template</h2>
-                    <input id="template-name" type="text" name="" value="" placeholder="Template name">
-                    <div id="create" class="">
-                        Create
+                <div class="create">
+                    <div class="title">
+                        Create template
+                    </div>
+                    <div class="actions">
+                        <input id="template-name" class="input" type="text" placeholder="Template name">
+                        <div id="create" class="action">
+                            Create
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="half edit">
-                <textarea id="template-data" name="name" rows="20" cols="80" disabled></textarea>
+                <textarea id="template-data" class="data" name="name" disabled></textarea>
                 <div class="actions">
                     <div class="action" id="save">
                         Save
