@@ -2,6 +2,10 @@
 
 Thingo - Extract data from any web pages
 
+## Template examples
+
+You can find two examples of template in the [template](https://github.com/Scotow/thingo/tree/master/templates) directory.
+
 ## Contribution
 
 ### Style guide
